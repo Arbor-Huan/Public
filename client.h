@@ -9,8 +9,10 @@
 
 #include "parse.h"
 
-#define EXIT_MSG "exit"
-#define CHANGE_NAME_MSG "r"
+#define EXIT_MSG "/exit"
+#define CHANGE_NAME_MSG "/rn"
+#define ONLINE_LIST "/ol"
+#define PRIVATE_CHAT "/pvt"
 
 class ChatRoomClient {
 private:
@@ -36,6 +38,9 @@ public:
     int addfd(int epollfd, int fd, bool enable_et);
 
     int work_loop();
+
+    int registe(int fd);
+    int login(int fd);
 
     int start_client(std::string ip, int port);
 

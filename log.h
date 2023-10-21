@@ -1,5 +1,5 @@
 //
-// Created by Sixzeroo on 2018/6/8. 
+// Created by Sixzeroo on 2018/6/8.    
 //
 
 #ifndef SRC_LOG_H

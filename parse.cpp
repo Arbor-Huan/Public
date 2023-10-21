@@ -10,15 +10,20 @@
 #include "parse.h"
 #include "log.h"
 
-Msg::Msg(int code, std::string context) {
+Msg::Msg(int code, int state, std::string name, std::string context)
+ {
     this->code = code;
+    this->state = state;
+    this->name = name;
     this->context = context;
 }
 
 int Msg::send_diy(int fd) {
     struct MsgPacket data;
     data.code = code;
+    data.state = state;
     strncpy(data.context, context.c_str(), sizeof(data.context));
+    strncpy(data.name, name.c_str(), sizeof(data.name));
     char message[BUFF_SIZE];
     bzero(message, sizeof(message));
     memcpy(message, &data, sizeof(data));
@@ -43,6 +48,8 @@ int Msg::recv_diy(int fd) {
 
     struct MsgPacket data;
     memcpy(&data, buf, sizeof(data));
+    state = data.state;
+    name = data.name;
     code = data.code;
     context = data.context;
     LOG(DEBUG)<<"Parse: Receive msg : msg code = "<<code<<std::endl;
