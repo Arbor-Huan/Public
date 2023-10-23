@@ -70,7 +70,6 @@ int ServerEpollWatcher::on_accept(EpollContext &epoll_context) {
     Msg m;
     m.code = M_NORMAL;
     m.context = WELCOM_MES;
-    // 【改】m.context = m.context + "\nYou nickname is " + std::to_string(client_fd) + " (Enter \"r\" ro replace).";
     m.context = m.context + "\n请你根据提示进行注册、登录操作！";
 
     int ret = m.send_diy(client_fd);

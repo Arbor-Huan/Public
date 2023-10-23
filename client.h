@@ -18,8 +18,7 @@ class ChatRoomClient {
 private:
     std::string _server_ip;
     int _server_port;
-    int _client_fd;
-    int _epollfd;
+    int _server_fd;
 
 public:
 
@@ -33,13 +32,10 @@ public:
 
     int connect_to_server(std::string server_ip, int port);
 
-    int set_noblocking(int fd);
-
-    int addfd(int epollfd, int fd, bool enable_et);
-
     int work_loop();
 
     int registe(int fd);
+    
     int login(int fd);
 
     int start_client(std::string ip, int port);
