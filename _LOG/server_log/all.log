@@ -1,0 +1,78 @@
+[Mon Oct 23 18:29:41 2023] [INFO] function (start_server) ; line : 20
+Server start: start
+
+[Mon Oct 23 18:29:41 2023] [DEBUG] function (start_epoll_loop) ; line : 291
+SocketEpoll: start epoll loop
+
+[Mon Oct 23 18:29:43 2023] [DEBUG] function (start_epoll_loop) ; line : 306
+SocketEpoll: handle event
+
+[Mon Oct 23 18:29:43 2023] [DEBUG] function (handle_accept_event) ; line : 163
+Handle: start handle accept event
+
+[Mon Oct 23 18:29:43 2023] [DEBUG] function (handle_accept_event) ; line : 178
+Handle: accept successful from 127.0.0.1:46318
+
+[Mon Oct 23 18:29:43 2023] [DEBUG] function (on_accept) ; line : 65
+Handle: on_accept start
+
+[Mon Oct 23 18:29:50 2023] [DEBUG] function (start_epoll_loop) ; line : 306
+SocketEpoll: handle event
+
+[Mon Oct 23 18:29:50 2023] [DEBUG] function (handle_readable_event) ; line : 208
+SocketEpoll handle readable event. fd = 11
+
+[Mon Oct 23 18:29:50 2023] [DEBUG] function (recv_diy) ; line : 55
+Parse: Receive msg : msg code = 6
+
+[Mon Oct 23 18:29:50 2023] [DEBUG] function (db_user_if_online) ; line : 320
+db_user_if_online() ncolumn:1 nrow=1
+
+[Mon Oct 23 18:29:50 2023] [DEBUG] function (on_readable) ; line : 165
+login() ret=-1
+
+[Mon Oct 23 18:29:50 2023] [DEBUG] function (db_user_on_off) ; line : 386
+cmd: UPDATE user set fd=11 where name='user01'
+
+[Mon Oct 23 18:29:50 2023] [INFO] function (on_readable) ; line : 178
+user user01 login success!
+
+[Mon Oct 23 18:29:50 2023] [INFO] function (on_readable) ; line : 189
+user01 online
+
+[Mon Oct 23 18:29:50 2023] [DEBUG] function (db_broadcast) ; line : 461
+ncolumn:1 nrow=1
+
+[Mon Oct 23 18:29:50 2023] [DEBUG] function (db_broadcast) ; line : 467
+peer_fd:11
+
+[Mon Oct 23 18:29:54 2023] [DEBUG] function (start_epoll_loop) ; line : 306
+SocketEpoll: handle event
+
+[Mon Oct 23 18:29:54 2023] [DEBUG] function (handle_readable_event) ; line : 208
+SocketEpoll handle readable event. fd = 11
+
+[Mon Oct 23 18:29:54 2023] [DEBUG] function (recv_diy) ; line : 55
+Parse: Receive msg : msg code = 1
+
+[Mon Oct 23 18:29:54 2023] [DEBUG] function (db_broadcast) ; line : 461
+ncolumn:1 nrow=1
+
+[Mon Oct 23 18:29:54 2023] [DEBUG] function (db_broadcast) ; line : 467
+peer_fd:11
+
+[Mon Oct 23 18:30:08 2023] [DEBUG] function (start_epoll_loop) ; line : 306
+SocketEpoll: handle event
+
+[Mon Oct 23 18:30:08 2023] [DEBUG] function (handle_readable_event) ; line : 208
+SocketEpoll handle readable event. fd = 11
+
+[Mon Oct 23 18:30:08 2023] [DEBUG] function (recv_diy) ; line : 55
+Parse: Receive msg : msg code = 3
+
+[Mon Oct 23 18:30:08 2023] [DEBUG] function (db_user_on_off) ; line : 386
+cmd: UPDATE user set fd=-1 where fd=11
+
+[Mon Oct 23 18:30:08 2023] [INFO] function (handle_readable_event) ; line : 227
+Client fd 11 exit ChatRoom
+

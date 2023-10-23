@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "config.h"
+#include "../include/config.h"
 
 int get_config_map(const char *file_name, std::map<std::string, std::string> &configs) {
     std::ifstream fs(file_name);

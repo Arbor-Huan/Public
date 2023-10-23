@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#include "log.h"
+#include "../include/log.h"
 
 std::ofstream Logger::_debug_log_file;
 std::ofstream Logger::_info_log_file;

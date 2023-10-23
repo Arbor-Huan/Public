@@ -6,10 +6,10 @@
 #include <unordered_map>
 #include <sqlite3.h>
 #include <cstring>
-#include "server.h"
-#include "parse.h"
-#include "config.h"
-#include "log.h"
+#include "../include/server.h"
+#include "../include/parse.h"
+#include "../include/config.h"
+#include "../include/log.h"
 
 /**************class ChatRoomServer**************/
 ChatRoomServer::ChatRoomServer() {
@@ -82,9 +82,9 @@ int ServerEpollWatcher::on_accept(EpollContext &epoll_context) {
 int ServerEpollWatcher::on_readable(EpollContext &epoll_context, std::unordered_map<int, std::string> &client_list) {
     int client_fd = epoll_context.fd;
     Msg recv_m;
-    recv_m.recv_diy(client_fd);
-    // 1.处理客户端退出的情况
-    if(recv_m.code == M_EXIT)
+    int ret = recv_m.recv_diy(client_fd);
+    // 1.处理客户端退出的情况(ret作为异常断连的标志)
+    if(recv_m.code == M_EXIT || ret == -1)
     {
 		// 设置fd为下线
 		db_user_on_off(client_fd, nullptr, OFFLINE);
@@ -145,18 +145,18 @@ int ServerEpollWatcher::on_readable(EpollContext &epoll_context, std::unordered_
         int dest_index;
         std::string content;
         Msg msg_back;
-
         msg_back.code = M_LOGIN;	
 
         //查询用户是否注册
-        dest_index = db_user_if_reg(recv_m.name.c_str());
-        if(dest_index == -1)
-        {
-            msg_back.state = USER_NOT_REGIST;
-            std::cout << "user " << recv_m.name << " login fail!" << std::endl;
-            msg_back.send_diy(client_fd);
-            return 0;
-        }
+        // dest_index = db_user_if_reg(recv_m.name.c_str());
+        // if(dest_index == -1)
+        // {
+        //     msg_back.state = USER_NOT_REGIST;
+        //     std::cout << "user " << recv_m.name << " login fail!" << std::endl;
+        //     msg_back.send_diy(client_fd);
+        //     return 0;
+        // }
+
         //判断某个用户是否在线
 		/*返回值 1： 在线
 				-1：不在线

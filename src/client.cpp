@@ -12,9 +12,9 @@
 #include <sys/epoll.h>
 #include <signal.h>
 
-#include "client.h"
-#include "log.h"
-#include "config.h"
+#include "../include/client.h"
+#include "../include/log.h"
+#include "../include/config.h"
 
 ChatRoomClient::ChatRoomClient()
 {

@@ -7,8 +7,8 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
-#include "parse.h"
-#include "log.h"
+#include "../include/parse.h"
+#include "../include/log.h"
 
 Msg::Msg(int code, int state, std::string name, std::string context)
  {

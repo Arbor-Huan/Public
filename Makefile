@@ -1,9 +1,16 @@
 CC = g++
 DEBUG = -g -Wall
 STD = c++11
-OBJS = main_server.o server.o parse.o socket_epoll.o log.o config.o
-OBJC = main_client.o client.o parse.o log.o config.o
-DEP_INCLUDE_PATH= -I ./
+INCLUDE_PATH = -I ./include
+
+SRC_DIR = ./src
+OBJ_DIR = ./obj
+
+_OBJS = main_server.o server.o parse.o socket_epoll.o log.o config.o threadpool.o
+OBJS = $(patsubst %,$(OBJ_DIR)/%,$(_OBJS))
+
+_OBJC = main_client.o client.o parse.o log.o config.o
+OBJC = $(patsubst %,$(OBJ_DIR)/%,$(_OBJC))
 
 ALL: server client
 
@@ -13,11 +20,9 @@ server: $(OBJS)
 client: $(OBJC)
 	$(CC) -std=$(STD) $^ -o $@ $(DEBUG) -lpthread
 
-%.o: %.cpp
-	$(CC) -std=$(STD) $(DEP_INCLUDE_PATH) -c $< $(DEBUG) -o $@ -lpthread -lsqlite3
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CC) -std=$(STD) $(INCLUDE_PATH) -c $< $(DEBUG) -o $@ -lpthread -lsqlite3
 
-
-.PHONY:
+.PHONY: clean
 clean:
-	@rm -f *.o *.h.gch client server
- 
+	rm -f $(OBJ_DIR)/*.o *.h.gch ./server ./client

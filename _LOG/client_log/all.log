@@ -1,0 +1,18 @@
+[Mon Oct 23 18:29:43 2023] [DEBUG] function (set_server_port) ; line : 32
+Set sever port: 8888
+
+[Mon Oct 23 18:29:43 2023] [DEBUG] function (set_server_ip) ; line : 27
+Set sever ip: 127.0.0.1
+
+[Mon Oct 23 18:29:43 2023] [DEBUG] function (recv_diy) ; line : 55
+Parse: Receive msg : msg code = 1
+
+[Mon Oct 23 18:29:50 2023] [DEBUG] function (recv_diy) ; line : 55
+Parse: Receive msg : msg code = 6
+
+[Mon Oct 23 18:29:54 2023] [DEBUG] function (work_loop) ; line : 148
+Client epoll: send msg to server
+
+[Mon Oct 23 18:30:08 2023] [DEBUG] function (work_loop) ; line : 104
+Client epoll: send exit msg to server
+

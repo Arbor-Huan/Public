@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <cstdio>
 #include <string>
-#include <utility>
 #include <errno.h>
 #include <string.h>
 #include <sys/socket.h>
@@ -14,8 +13,8 @@
 #include <arpa/inet.h>
 #include <sys/epoll.h>
 
-#include "socket_epoll.h"
-#include "log.h"
+#include "../include/socket_epoll.h"
+#include "../include/log.h"
 
 SocketEpoll::SocketEpoll() : _threadpool(new ThreadPool(8)) {
     _epollfd = -1;
@@ -303,7 +302,7 @@ int SocketEpoll::start_epoll_loop() {
             LOG(ERROR)<<"SocketEpoll: epoll wait error"<<std::endl;
             break;
         }
-
+        std::cout << "测试：" << epoll_events_count << std::endl;
         LOG(DEBUG)<<"SocketEpoll: handle event"<<std::endl;
         for(int i = 0; i < epoll_events_count; i++)
             //在此加入线程池队列
