@@ -1,0 +1,12 @@
+[Tue Oct 24 12:58:31 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Tue Oct 24 12:58:31 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Tue Oct 24 12:58:31 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Tue Oct 24 12:59:01 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+

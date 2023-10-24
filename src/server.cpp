@@ -1,7 +1,3 @@
-//
-// Created by Sixzeroo on 2018/6/6.
-//
-
 #include <string>
 #include <unordered_map>
 #include <sqlite3.h>
@@ -121,7 +117,6 @@ int ServerEpollWatcher::on_readable(EpollContext &epoll_context, std::unordered_
 
         if(dest_index == -1)
         {	
-			// std::cout << "测试:"<<recv_m.name <<std::endl;
             if(db_add_user(recv_m.name.c_str(), recv_m.context.c_str()) == -1)
 			{
 				//用户名或密码不符合要求

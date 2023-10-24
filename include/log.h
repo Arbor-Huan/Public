@@ -1,7 +1,3 @@
-//
-// Created by Sixzeroo on 2018/6/8.    
-//
-
 #ifndef SRC_LOG_H
 #define SRC_LOG_H
 
@@ -37,14 +33,17 @@ class Logger {
                             const std::string info_log_file,
                             const std::string warn_log_file,
                             const std::string error_log_file,
-                            const std::string log_file );
-
+                            const std::string log_file);
+    // 设置日志存储模式，为0时全部存储在一个文件里，
+    // 输出大于等于此模式的级别，比如mode为1，则全部工作。
     friend void set_logger_mode(int mode);
 
 private:
     LOG_LEVEL _log_level;
 
     static int _mode;
+
+    static std::ostream _nullstream; // 垃圾输出流
 
     static std::ostream& get_stream(LOG_LEVEL log_level);
 
@@ -60,9 +59,6 @@ public:
     Logger(LOG_LEVEL log_level) : _log_level(log_level) {};
 
     ~Logger();
-
-    // 设置日志存储模式，为1时全部存储在一个文件里
-    void set_logger_mode(int mode);
 
     // 静态成员函数
     static std::ostream& write_log(LOG_LEVEL log_level, const int line, const std::string function);

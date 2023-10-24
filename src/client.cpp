@@ -1,7 +1,3 @@
-//
-// Created by Sixzeroo on 2018/6/7.
-//
-
 #include <iostream>
 #include <unistd.h>
 #include <fcntl.h>
@@ -133,8 +129,7 @@ int ChatRoomClient::work_loop() {
                 std::cin.get();
 
                 std::cout << "say:" << std::endl ;
-                std::cin >> send_m.context;
-                std::cin.get();
+                std::getline(std::cin, send_m.context);
                 send_m.context += "\n";
                 send_m.send_diy(_server_fd);
                 continue;
@@ -189,8 +184,7 @@ int ChatRoomClient::registe(int fd) {
     std::cin >> msg.name;
     std::cin.get();
     std::cout << "请输入您的密码：" << std::endl;
-    std::cin >> msg.context;
-    std::cin.get();
+    std::getline(std::cin, msg.context);
     msg.send_diy(_server_fd);
 
     msgback.recv_diy(_server_fd);
@@ -211,8 +205,7 @@ int ChatRoomClient::login(int fd) {
     std::cin >> msg.name;
     std::cin.get();
     std::cout << "请输入您的密码：" << std::endl;
-    std::cin >> msg.context;
-    std::cin.get();
+    std::getline(std::cin, msg.context);
 
     msg.send_diy(_server_fd);
     msgback.recv_diy(_server_fd);

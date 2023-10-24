@@ -1,6 +1,3 @@
-//
-// Created by Sixzeroo on 2018/6/6.
-//
 
 #ifndef CHARROOM_PARSE_H
 #define CHARROOM_PARSE_H

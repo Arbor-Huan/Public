@@ -1,7 +1,3 @@
-//
-// Created by Sixzeroo on 2018/6/4.
-//
-
 #include <cstdlib>
 #include <cstdio>
 #include <string>
@@ -302,7 +298,6 @@ int SocketEpoll::start_epoll_loop() {
             LOG(ERROR)<<"SocketEpoll: epoll wait error"<<std::endl;
             break;
         }
-        std::cout << "测试：" << epoll_events_count << std::endl;
         LOG(DEBUG)<<"SocketEpoll: handle event"<<std::endl;
         for(int i = 0; i < epoll_events_count; i++)
             //在此加入线程池队列

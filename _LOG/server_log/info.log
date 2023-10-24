@@ -1,0 +1,21 @@
+[Tue Oct 24 12:58:25 2023] [INFO] function (start_server) ; line : 16
+Server start: start
+
+[Tue Oct 24 12:59:01 2023] [INFO] function (on_readable) ; line : 173
+user user01 login success!
+
+[Tue Oct 24 12:59:01 2023] [INFO] function (on_readable) ; line : 184
+user01 online
+
+[Tue Oct 24 12:59:18 2023] [INFO] function (handle_readable_event) ; line : 223
+Client fd 11 exit ChatRoom
+
+[Tue Oct 24 13:00:00 2023] [INFO] function (start_server) ; line : 16
+Server start: start
+
+[Tue Oct 24 13:00:23 2023] [INFO] function (on_readable) ; line : 173
+user user01 login success!
+
+[Tue Oct 24 13:00:23 2023] [INFO] function (on_readable) ; line : 184
+user01 online
+

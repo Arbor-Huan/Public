@@ -1,7 +1,3 @@
-//
-// Created by Sixzeroo on 2018/6/6.
-//
-
 #ifndef CHARROOM_SERVER_H
 #define CHARROOM_SERVER_H
 

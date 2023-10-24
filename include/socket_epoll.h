@@ -1,7 +1,3 @@
-//
-// Created by Sixzeroo on 2018/6/4.
-//
-
 #ifndef CHARROOM_SOCKET_EPOLL_H
 #define CHARROOM_SOCKET_EPOLL_H
 

@@ -1,7 +1,3 @@
-//
-// Created by Sixzeroo on 2018/6/7.
-//
-
 #include <string.h>
 #include <iostream>
 #include <sys/types.h>

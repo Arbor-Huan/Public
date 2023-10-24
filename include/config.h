@@ -1,7 +1,3 @@
-//
-// Created by Sixzeroo on 2018/6/8.
-//
-
 #ifndef SRC_CONFIG_H
 #define SRC_CONFIG_H
 
