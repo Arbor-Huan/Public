@@ -1,4 +1,4 @@
-# GPT4.0-Academic Report
+# 本报告由-GPT4.0-自动生成
 
 ## 接下来请你逐文件分析下面的工程[0/16] 请对下面的程序文件做一个概述: Public-master/include/client.h
 
