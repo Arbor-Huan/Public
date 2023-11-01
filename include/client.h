@@ -6,7 +6,8 @@
 #include "parse.h"
 
 #define EXIT_MSG "/exit"
-#define CHANGE_NAME_MSG "/rn"
+#define CHANGE_NAME_MSG "/cn"
+#define CHANGE_PASSWD_MSG "/cp"
 #define ONLINE_LIST "/ol"
 #define PRIVATE_CHAT "/pvt"
 

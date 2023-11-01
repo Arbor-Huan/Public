@@ -27,7 +27,7 @@ public:
 
     virtual int on_accept(EpollContext &epoll_context) = 0;
 
-    virtual int on_readable(EpollContext &epoll_context, std::unordered_map<int, std::string> &client_list) = 0;
+    virtual int on_readable(EpollContext &epoll_context) = 0;
 };
 
 class SocketEpoll {
@@ -41,17 +41,17 @@ private:
     int handle_event(epoll_event &e);
 
     int handle_accept_event(const int &epollfd, epoll_event &event, SocketEpollWatcher *socket_watcher);
+    int handle_readable_event(epoll_event &event, SocketEpollWatcher *socket_watcher);
 
     int _epollfd;
     int _max_events;
     std::string _bind_ip;
-    int _backlog;
+    int _backlog; // listen的参数
     int _port;
     int _listen_socket;
     int _status; //见SocketEpollStatus，3种运行状态
-    std::unordered_map<int, std::string> _client_list; //暂时用map存储账号信息
     int _clients;
-    SocketEpollWatcher *_watcher;
+    SocketEpollWatcher *_watcher; // 待绑定地址的纯虚对象，作为业务接口
     std::unique_ptr<ThreadPool> _threadpool;  // 线程池
 
 public:
@@ -68,7 +68,7 @@ public:
     void set_max_events(int _max_events);
 
     int set_nonblocking(int fd);
-
+    // 绑定watcher接口地址
     void set_watcher(SocketEpollWatcher *_watcher);
 
     int add_listen_sock_to_epoll();
@@ -78,10 +78,6 @@ public:
     int start_epoll_loop();
 
     int stop_epoll();
-
-    int handle_readable_event(epoll_event &event, SocketEpollWatcher *socket_watcher);
-
-
 };
 
 #endif //CHARROOM_SOCKET_EPOLL_H

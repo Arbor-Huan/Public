@@ -21,7 +21,8 @@ enum MsgType {
     M_CNAME = 4,    //  改名请求
     M_REGISTER = 5,  // 注册类型
     M_LOGIN = 6,     // 登录类型
-    M_ONLINEUSER = 7  // 在线用户
+    M_ONLINEUSER = 7,  // 在线用户
+    M_CPASSWORD = 8
 };
 
 // 消息格式

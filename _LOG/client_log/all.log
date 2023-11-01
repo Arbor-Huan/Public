@@ -22,3 +22,228 @@ receve len = 0 msg
 [Tue Oct 24 13:01:24 2023] [INFO] function (work_loop) ; line : 153
 Client epoll: close connetct
 
+[Wed Nov  1 19:01:37 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Wed Nov  1 19:01:37 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Wed Nov  1 19:01:37 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:01:44 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:01:54 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:03:56 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Wed Nov  1 19:03:56 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Wed Nov  1 19:03:56 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:04:00 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:04:18 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 7
+
+[Wed Nov  1 19:04:40 2023] [DEBUG] function (work_loop) ; line : 112
+Client epoll: send change name msg to server
+
+[Wed Nov  1 19:04:40 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 4
+
+[Wed Nov  1 19:04:58 2023] [DEBUG] function (work_loop) ; line : 143
+Client epoll: send msg to server
+
+[Wed Nov  1 19:05:04 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 7
+
+[Wed Nov  1 19:05:27 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Wed Nov  1 19:05:27 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Wed Nov  1 19:05:27 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:05:31 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:05:38 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:05:40 2023] [DEBUG] function (work_loop) ; line : 143
+Client epoll: send msg to server
+
+[Wed Nov  1 19:05:58 2023] [DEBUG] function (work_loop) ; line : 112
+Client epoll: send change name msg to server
+
+[Wed Nov  1 19:05:58 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 4
+
+[Wed Nov  1 19:46:13 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Wed Nov  1 19:46:13 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Wed Nov  1 19:46:13 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:46:20 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:46:40 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Wed Nov  1 19:46:40 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Wed Nov  1 19:46:40 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:46:45 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:46:52 2023] [DEBUG] function (work_loop) ; line : 112
+Client epoll: send change name msg to server
+
+[Wed Nov  1 19:46:52 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 4
+
+[Wed Nov  1 19:47:35 2023] [DEBUG] function (work_loop) ; line : 124
+Client epoll: send change password msg to server
+
+[Wed Nov  1 19:47:35 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 8
+
+[Wed Nov  1 19:47:41 2023] [DEBUG] function (work_loop) ; line : 155
+Client epoll: send msg to server
+
+[Wed Nov  1 19:47:51 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Wed Nov  1 19:47:51 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Wed Nov  1 19:47:51 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:47:57 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:47:57 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:47:59 2023] [DEBUG] function (work_loop) ; line : 155
+Client epoll: send msg to server
+
+[Wed Nov  1 19:47:59 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:48:09 2023] [DEBUG] function (work_loop) ; line : 155
+Client epoll: send msg to server
+
+[Wed Nov  1 19:48:09 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:49:32 2023] [DEBUG] function (work_loop) ; line : 100
+Client epoll: send exit msg to server
+
+[Wed Nov  1 19:49:36 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Wed Nov  1 19:49:36 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Wed Nov  1 19:49:36 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:49:42 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:49:49 2023] [DEBUG] function (recv_diy) ; line : 51
+[Wed Nov  1 19:49:49 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+Parse: Receive msg : msg code = 6
+
+
+[Wed Nov  1 19:49:51 2023] [DEBUG] function (work_loop) ; line : 155
+Client epoll: send msg to server
+
+[Wed Nov  1 19:49:51 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:50:06 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 7
+
+[Wed Nov  1 19:50:10 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Wed Nov  1 19:50:10 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Wed Nov  1 19:50:10 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:50:15 2023] [DEBUG] function (work_loop) ; line : 155
+Client epoll: send msg to server
+
+[Wed Nov  1 19:50:19 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 7
+
+[Wed Nov  1 19:50:26 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:50:31 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:50:31 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:50:38 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 7
+
+[Wed Nov  1 19:50:46 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 7
+
+[Wed Nov  1 19:52:22 2023] [DEBUG] function (work_loop) ; line : 155
+Client epoll: send msg to server
+
+[Wed Nov  1 19:52:25 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 7
+
+[Wed Nov  1 19:52:31 2023] [DEBUG] function (work_loop) ; line : 112
+Client epoll: send change name msg to server
+
+[Wed Nov  1 19:52:31 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 4
+
+[Wed Nov  1 19:52:44 2023] [DEBUG] function (work_loop) ; line : 124
+Client epoll: send change password msg to server
+
+[Wed Nov  1 19:52:44 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 8
+
+[Wed Nov  1 19:52:57 2023] [DEBUG] function (set_server_port) ; line : 28
+Set sever port: 8888
+
+[Wed Nov  1 19:52:57 2023] [DEBUG] function (set_server_ip) ; line : 23
+Set sever ip: 127.0.0.1
+
+[Wed Nov  1 19:52:57 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 1
+
+[Wed Nov  1 19:53:01 2023] [DEBUG] function (recv_diy) ; line : 51
+Parse: Receive msg : msg code = 6
+
+[Wed Nov  1 19:53:04 2023] [DEBUG] function (work_loop) ; line : 100
+Client epoll: send exit msg to server
+

@@ -11,7 +11,6 @@
 class ThreadPool {
 public:
     explicit ThreadPool(size_t threadCount = 8);
-    ThreadPool() = default;
     ThreadPool(ThreadPool&&) = default;
     ~ThreadPool();
 

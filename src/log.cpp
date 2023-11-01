@@ -13,7 +13,7 @@ std::ofstream Logger::_info_log_file;
 std::ofstream Logger::_warn_log_file;
 std::ofstream Logger::_error_log_file;
 std::ofstream Logger::_log_file;
-std::ostream Logger::_nullstream(0); //必须初始化
+std::ostream Logger::_nullstream(0); 
 
 int Logger::_mode;
 

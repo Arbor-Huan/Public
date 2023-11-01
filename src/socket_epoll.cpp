@@ -18,7 +18,7 @@ SocketEpoll::SocketEpoll() : _threadpool(new ThreadPool(8)) {
     _listen_socket = -1;
     _port = -1;
     _clients = 0;
-    _status = 0;  // 构造时的状态为停止状态
+    _status = 0;
     _backlog = 20;
     _max_events = 100;
 }
@@ -136,7 +136,6 @@ int SocketEpoll::handle_event(epoll_event &e) {
         _threadpool->AddTask([this, &e]() {
         handle_accept_event(_epollfd, e, _watcher);
         });
-        //handle_accept_event(_epollfd, e, _watcher);
     }
     else if(e.events & EPOLLIN)
     {
@@ -144,7 +143,6 @@ int SocketEpoll::handle_event(epoll_event &e) {
         _threadpool->AddTask([this, &e]() {
         handle_readable_event(e, _watcher);
         });
-        //handle_readable_event(e, _watcher);
     }
     else
     {
@@ -203,7 +201,7 @@ int SocketEpoll::handle_readable_event(epoll_event &event, SocketEpollWatcher *s
 
     LOG(DEBUG)<<"SocketEpoll handle readable event. fd = "<<fd<<std::endl;
 
-    int ret = socket_watcher->on_readable(*epoll_context, _client_list);
+    int ret = socket_watcher->on_readable(*epoll_context);
 
     if(ret == -1)
     {
@@ -213,12 +211,16 @@ int SocketEpoll::handle_readable_event(epoll_event &event, SocketEpollWatcher *s
     // 客户端退出的情况
     if(ret == -2)
     {
+        // 释放event.data.ptr内存，即EpollContext
+        delete event.data.ptr;
+
         // 去除epoll检测
         if(epoll_ctl(_epollfd, EPOLL_CTL_DEL, fd, &event) == -1)
         {
             LOG(ERROR)<<"Handle: epoll del error"<<std::endl;
             return -1;
         }
+        
         
         LOG(INFO)<<"Client fd "<<fd<<" exit ChatRoom"<<std::endl;
         printf("Client fd %d exit ChatRoom\n", fd);
@@ -285,9 +287,10 @@ int SocketEpoll::start_epoll() {
 int SocketEpoll::start_epoll_loop() {
     epoll_event *events = new epoll_event[_max_events];
     LOG(DEBUG)<<"SocketEpoll: start epoll loop"<<std::endl;
+    int epoll_events_count;
     while (_status != S_STOP)
     {
-        int epoll_events_count = epoll_wait(_epollfd, events, _max_events, -1);
+        epoll_events_count = epoll_wait(_epollfd, events, _max_events, -1);
         if(epoll_events_count == -1)
         {
             if(errno == EINTR) //中断导致

@@ -86,7 +86,7 @@ int ChatRoomClient::work_loop() {
         return -1;
     } else if(pid == 0) { // 子进程
         char message[BUFF_SIZE];
-        // 子进程循环，读取用户输入并写入管道
+        // 子进程循环，读取用户输入
         while (1) {
             bzero(message, BUFF_SIZE);
             fgets(message, BUFF_SIZE, stdin);
@@ -110,6 +110,18 @@ int ChatRoomClient::work_loop() {
                 send_m.send_diy(_server_fd);
                 std::cout << "等待服务器响应，waiting..." << std::endl;
                 LOG(DEBUG) << "Client epoll: send change name msg to server" << std::endl;
+                continue;
+            }
+            // 处理改密码的情况
+            else if(strncasecmp(message, CHANGE_PASSWD_MSG, strlen(CHANGE_NAME_MSG)) == 0) {
+                Msg send_m;
+                send_m.code = M_CPASSWORD;
+                std::cout << "输入更改后的密码:" << std::endl << "#";
+                std::cin >> send_m.context;
+                std::cin.get();
+                send_m.send_diy(_server_fd);
+                std::cout << "等待服务器响应，waiting..." << std::endl;
+                LOG(DEBUG) << "Client epoll: send change password msg to server" << std::endl;
                 continue;
             }
             // 打印在线列表
@@ -156,13 +168,24 @@ int ChatRoomClient::work_loop() {
                 kill(pid, SIGUSR1);
                 break;
             }
-            // 2、改名回执
+            // 2.1、改名回执
             else if(recv_m.code==M_CNAME) {
                 if(recv_m.state==OP_OK)
                     std::cout << "\n【响应】:改名成功！" << std::endl;
+                else if(recv_m.state==USER_NOT_REGIST)
+                    std::cout << "\n【响应】:改名失败！用户不存在！" << std::endl;
                 else
-                    std::cout << "\n【响应】:改名失败！可能是字符过长或者用户不存在！" << std::endl;
-            }                    
+                    std::cout << "\n【响应】:改名失败！名字不符合要求！" << std::endl;
+            }
+            // 2.2、改密码回执
+            else if(recv_m.code==M_CPASSWORD) {
+                if(recv_m.state==OP_OK)
+                    std::cout << "\n【响应】:改密码成功！" << std::endl;
+                else if(recv_m.state==USER_NOT_REGIST)
+                    std::cout << "\n【响应】:改密码失败！用户不存在！" << std::endl;
+                else
+                    std::cout << "\n【响应】:改密码失败！未知原因！" << std::endl;
+            }
             // 3、收到公聊or私聊信息
             else if(recv_m.code==M_NORMAL || recv_m.code==M_PRIVATE) {
                 std::string time_str = get_time_str();
@@ -257,7 +280,8 @@ int ChatRoomClient::start_client(std::string ip, int port) {
     std::cout << "指令表：" << std::endl;
     std::cout << "\t/pvt--私聊" << std::endl;
     std::cout << "\t/ol--在线列表" << std::endl;
-    std::cout << "\t/rn--更改名字" << std::endl;
+    std::cout << "\t/cn--更改名字" << std::endl;
+    std::cout << "\t/cp--更改密码" << std::endl;
     std::cout << "\t/exit--退出" << std::endl;
     // 先注册登录再循环，减少“空跑”
     return work_loop();

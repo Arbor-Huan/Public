@@ -8,6 +8,7 @@ ThreadPool::ThreadPool(size_t threadCount) : pool_(std::make_shared<Pool>()) {
     // 创建 threadCount 个子线程
     for(size_t i = 0; i < threadCount; i++) {
         std::thread([pool = pool_] {
+            // 初始化并加锁
             std::unique_lock<std::mutex> locker(pool->mtx);
             while(true) {
                 if(!pool->tasks.empty()) {

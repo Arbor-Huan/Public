@@ -19,3 +19,84 @@ user user01 login success!
 [Tue Oct 24 13:00:23 2023] [INFO] function (on_readable) ; line : 184
 user01 online
 
+[Wed Nov  1 19:01:11 2023] [INFO] function (start_server) ; line : 16
+Server start: start
+
+[Wed Nov  1 19:01:56 2023] [INFO] function (handle_readable_event) ; line : 225
+Client fd 11 exit ChatRoom
+
+[Wed Nov  1 19:04:00 2023] [INFO] function (on_readable) ; line : 171
+user user01 login success!
+
+[Wed Nov  1 19:04:00 2023] [INFO] function (on_readable) ; line : 182
+user01 online
+
+[Wed Nov  1 19:05:11 2023] [INFO] function (handle_readable_event) ; line : 225
+Client fd 12 exit ChatRoom
+
+[Wed Nov  1 19:05:38 2023] [INFO] function (on_readable) ; line : 171
+user user001 login success!
+
+[Wed Nov  1 19:05:38 2023] [INFO] function (on_readable) ; line : 182
+user001 online
+
+[Wed Nov  1 19:06:01 2023] [INFO] function (handle_readable_event) ; line : 225
+Client fd 13 exit ChatRoom
+
+[Wed Nov  1 19:46:09 2023] [INFO] function (start_server) ; line : 16
+Server start: start
+
+[Wed Nov  1 19:46:20 2023] [INFO] function (on_readable) ; line : 187
+user user01 login success!
+
+[Wed Nov  1 19:46:20 2023] [INFO] function (on_readable) ; line : 198
+user01 online
+
+[Wed Nov  1 19:46:28 2023] [INFO] function (handle_readable_event) ; line : 225
+Client fd 11 exit ChatRoom
+
+[Wed Nov  1 19:46:45 2023] [INFO] function (on_readable) ; line : 187
+user user01 login success!
+
+[Wed Nov  1 19:46:45 2023] [INFO] function (on_readable) ; line : 198
+user01 online
+
+[Wed Nov  1 19:47:57 2023] [INFO] function (on_readable) ; line : 187
+user user02 login success!
+
+[Wed Nov  1 19:47:57 2023] [INFO] function (on_readable) ; line : 198
+user02 online
+
+[Wed Nov  1 19:49:32 2023] [INFO] function (handle_readable_event) ; line : 225
+Client fd 12 exit ChatRoom
+
+[Wed Nov  1 19:49:49 2023] [INFO] function (on_readable) ; line : 187
+user user001 login success!
+
+[Wed Nov  1 19:49:49 2023] [INFO] function (on_readable) ; line : 198
+user001 online
+
+[Wed Nov  1 19:50:00 2023] [INFO] function (handle_readable_event) ; line : 225
+Client fd 13 exit ChatRoom
+
+[Wed Nov  1 19:50:31 2023] [INFO] function (on_readable) ; line : 187
+user user02 login success!
+
+[Wed Nov  1 19:50:31 2023] [INFO] function (on_readable) ; line : 198
+user02 online
+
+[Wed Nov  1 19:50:41 2023] [INFO] function (handle_readable_event) ; line : 225
+Client fd 15 exit ChatRoom
+
+[Wed Nov  1 19:52:46 2023] [INFO] function (handle_readable_event) ; line : 225
+Client fd 14 exit ChatRoom
+
+[Wed Nov  1 19:53:01 2023] [INFO] function (on_readable) ; line : 187
+user user01 login success!
+
+[Wed Nov  1 19:53:01 2023] [INFO] function (on_readable) ; line : 198
+user01 online
+
+[Wed Nov  1 19:53:04 2023] [INFO] function (handle_readable_event) ; line : 225
+Client fd 16 exit ChatRoom
+

@@ -8,7 +8,7 @@
 #include "socket_epoll.h"
 #include "threadpool.h"
 
-#define WELCOM_MES "Welcome to ChatRoom!"
+#define WELCOM_MES "Welcome to ChatRoom!\n请你根据提示进行注册、登录操作！"
 #define ONLY_ONE_CAUTION "There is only one people in the chatroom!"
 #define DATABASE_NAME "user.db"
 #define TABLE_USER "user"
@@ -18,7 +18,7 @@
 class ServerEpollWatcher : public SocketEpollWatcher {
 public:
     virtual int on_accept(EpollContext &epoll_context);
-    virtual int on_readable(EpollContext &epoll_context, std::unordered_map<int, std::string> &client_list);
+    virtual int on_readable(EpollContext &epoll_context);
     ServerEpollWatcher(); // 数据库初始化
     ~ServerEpollWatcher(); // 关闭数据库
     int db_user_if_reg(const char *name);
@@ -30,6 +30,7 @@ public:
     int db_list_online_user(int fd);
     int db_fd_name(int fd, std::string &name);
     int db_change_name(int fd, const char *new_name);
+    int db_change_password(int fd, const char *new_passwd);
 private:
     sqlite3 *db;
 };

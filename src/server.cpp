@@ -41,15 +41,14 @@ ServerEpollWatcher::ServerEpollWatcher()
         exit(1);
 	}
 
-	/* Execute SQL statement */
-	  ret = sqlite3_exec(db, sql, NULL, 0, &errmsg);
-	
-	  if (ret != SQLITE_OK) {
-        std::cerr << "SQL error: " << errmsg << std::endl;
-        sqlite3_free(errmsg);
-	  } else {
-		std::cout << "Table created successfully" << std::endl;
-	  }
+	ret = sqlite3_exec(db, sql, NULL, 0, &errmsg);
+
+	if (ret != SQLITE_OK) {
+	std::cerr << "SQL error: " << errmsg << std::endl;
+	sqlite3_free(errmsg);
+	} else {
+	std::cout << "Table created successfully" << std::endl;
+	}
 }
 ServerEpollWatcher::~ServerEpollWatcher()
 {
@@ -62,11 +61,10 @@ int ServerEpollWatcher::on_accept(EpollContext &epoll_context) {
     int client_fd = epoll_context.fd;
 
     printf("client %s:%d connected to server\n", epoll_context.client_ip.c_str(), epoll_context.client_port);
-    // 返回欢迎信息和nickname信息
+    // 返回欢迎信息和提示操作信息
     Msg m;
     m.code = M_NORMAL;
     m.context = WELCOM_MES;
-    m.context = m.context + "\n请你根据提示进行注册、登录操作！";
 
     int ret = m.send_diy(client_fd);
 
@@ -75,7 +73,7 @@ int ServerEpollWatcher::on_accept(EpollContext &epoll_context) {
 
 
 // 处理来信请求, 出错返回-1， 退出连接返回-2
-int ServerEpollWatcher::on_readable(EpollContext &epoll_context, std::unordered_map<int, std::string> &client_list) {
+int ServerEpollWatcher::on_readable(EpollContext &epoll_context) {
     int client_fd = epoll_context.fd;
     Msg recv_m;
     int ret = recv_m.recv_diy(client_fd);
@@ -86,25 +84,42 @@ int ServerEpollWatcher::on_readable(EpollContext &epoll_context, std::unordered_
 		db_user_on_off(client_fd, nullptr, OFFLINE);
         return -2; // 让上层去除epoll检测
     }
-    // 2.改名请求
+    // 2.1改名请求
     else if(recv_m.code == M_CNAME)
     {
 		Msg msg_back;
 		msg_back.code = M_CNAME; 
-		if(db_change_name(client_fd, recv_m.context.c_str()) == 0) 
+		if(ret = db_change_name(client_fd, recv_m.context.c_str()) == 0) 
         {
-            msg_back.state = OP_OK; // Operation Successful
-			msg_back.context = "Name Changed Successfully!";
-			msg_back.send_diy(client_fd);
+            msg_back.state = OP_OK; 
+			// msg_back.context = "Name Changed Successfully!";
+        }
+        else if(ret == -2)
+        {
+            msg_back.state = USER_NOT_REGIST; 
+			// msg_back.context = "Name Change Failed!";
+        }
+		msg_back.send_diy(client_fd);
+        return 0;
+    }
+	// 2.2更改密码请求
+	else if(recv_m.code == M_CPASSWORD)
+	{
+		Msg msg_back;
+		msg_back.code = M_CPASSWORD; 
+		if(db_change_password(client_fd, recv_m.context.c_str()) == 0) 
+        {
+            msg_back.state = OP_OK; 
+			// msg_back.context = "Password Changed Successfully!";
         }
         else
         {
-            msg_back.state = USER_NOT_REGIST; // Operation Failed
-			msg_back.context = "Name Change Failed!";
-			msg_back.send_diy(client_fd);
+            msg_back.state = USER_NOT_REGIST;
+			// msg_back.context = "Password Change Failed!";
         }
+		msg_back.send_diy(client_fd);
         return 0;
-    }
+	}
     // 3.注册请求
     else if(recv_m.code == M_REGISTER)
     {
@@ -152,7 +167,7 @@ int ServerEpollWatcher::on_readable(EpollContext &epoll_context, std::unordered_
         //     return 0;
         // }
 
-        //判断某个用户是否在线
+        //判断某个用户是否在线,同时验证密码
 		/*返回值 1： 在线
 				-1：不在线
 				-2：用户不存在*/
@@ -166,7 +181,6 @@ int ServerEpollWatcher::on_readable(EpollContext &epoll_context, std::unordered_
             return 0;
         }else if(ret == -1){
 			//存在，可以登录
-            //上面的if_online已检查密码
             db_user_on_off(client_fd,recv_m.name.c_str(),ONLINE);
 
             msg_back.state = OP_OK;
@@ -209,12 +223,6 @@ int ServerEpollWatcher::on_readable(EpollContext &epoll_context, std::unordered_
 		meg_str = "[Public]" + client_name + " say:" + recv_m.context;
 		db_broadcast(client_fd, meg_str);
 		
-		// 进行广播
-		// for(auto it : client_list)
-		// {
-		//     if(it.first == client_fd) continue;
-		//     send_m.send_diy(it.first);
-		// }
     }
     return 0;
 }
@@ -333,17 +341,32 @@ int ServerEpollWatcher::db_user_if_online(const char *name, const char *passwd)
 	return ret;
 }
 
-// 改名请求
+// 改名
 int ServerEpollWatcher::db_change_name(int fd, const char *new_name)
 {
 	char* errmsg;
     char sqlstr[1024] = {0};
-	if((strlen(new_name)>32)||(strlen(new_name)>32))
+	if((strlen(new_name)>32) || (new_name==nullptr))
 		return -1;
     sprintf(sqlstr, "UPDATE %s SET name = '%s' WHERE fd = %d", TABLE_USER, new_name, fd);
 
     if (sqlite3_exec(db, sqlstr, NULL, NULL, &errmsg) != SQLITE_OK) {
         LOG(ERROR) << "Error updating name: " << errmsg << std::endl;
+        sqlite3_free(errmsg);
+        return -2;
+    }
+    return 0;
+}
+
+// 改密码
+int ServerEpollWatcher::db_change_password(int fd, const char *new_passwd)
+{
+	char* errmsg;
+    char sqlstr[1024] = {0};
+    sprintf(sqlstr, "UPDATE %s SET passwd = '%s' WHERE fd = %d", TABLE_USER, new_passwd, fd);
+
+    if (sqlite3_exec(db, sqlstr, NULL, NULL, &errmsg) != SQLITE_OK) {
+        LOG(ERROR) << "Error updating passwd: " << errmsg << std::endl;
         sqlite3_free(errmsg);
         return -1;
     }
