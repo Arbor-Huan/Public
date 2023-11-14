@@ -1,6 +1,6 @@
 # 本报告由-GPT4.0-自动生成
 
-## 接下来请你逐文件分析下面的工程[0/16] 请对下面的程序文件做一个概述: Public-master/include/client.h
+## [0/16] 请对下面的程序文件做一个概述: Public-master/include/client.h
 
 文件 `client.h` 是一个C++头文件，它定义了一个名为 `ChatRoomClient` 的类，这个类用于实现一个聊天室客户端的功能。以下是对该文件中内容的概述：
 
